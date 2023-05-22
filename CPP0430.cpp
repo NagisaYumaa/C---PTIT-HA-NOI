@@ -1,27 +1,47 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-main(){
-main(){
-	int t;
-	cin>>t;
-	while(t--){
-		int ans = 0;
-		int n;
-		cin>>n;
-		int a[n];
-		for(int i= 0 ; i<n ; i++){
-			cin>>a[i] ; 
-		}
-		sort(a,a+n);
-		for(int i= 0 ; i < n-1 ; i ++){
-			for(int j = i+1 ; j< n ; j++){
-				
-			}
-		}
-		cout<<ans<<endl;
-	}
-}
+int countMissingElements(const vector<int>& A) {
+    int L = *min_element(A.begin(), A.end());
+    int R = *max_element(A.begin(), A.end());
+
+    vector<bool> present(R - L + 1, false);
+
+    for (int num : A) {
+        present[num - L] = true;
+    }
+
+
+    int count = 0;
+    for (bool isPresent : present) {
+        if (!isPresent) {
+            count++;
+        }
+    }
+
+    return count;
 }
 
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int n;
+        cin >> n;
+
+        vector<int> A(n);
+        for (int i = 0; i < n; i++) {
+            cin >> A[i];
+        }
+
+
+        int missingCount = countMissingElements(A);
+        cout << missingCount << endl;
+    }
+
+    return 0;
+}
 
